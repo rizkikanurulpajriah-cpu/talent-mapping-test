@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Mapping Test</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="blob"></div>
+    <div class="container">
+
+        <!-- SECTION 1: Landing Page -->
+        <div id="landing-page" class="glass-card fade-in">
+            <h1>Temukan Potensi Terbesar Mulia Anda</h1>
+            <p>Ikuti tes pemetaan bakat sederhana ini untuk mengetahui kekuatan dominan, kecenderungan perilaku, dan
+                rekomendasi pengembangan diri Anda. Gratis dan tanpa login.</p>
+            <button class="btn btn-primary" onclick="goToForm()">Mulai Tes Sekarang</button>
+            <button class="btn btn-option" onclick="showHistory()"
+                style="margin-top: 1rem; text-align: center; justify-content: center;">Riwayat Tes</button>
+        </div>
+
+        <!-- SECTION 2: User Data Form -->
+        <div id="user-form-page" class="glass-card hidden">
+            <h2>Data Diri</h2>
+            <p>Isi data singkat untuk personalisasi hasil tes Anda.</p>
+            <form id="userDataForm" onsubmit="startQuiz(event)">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Usia</label>
+                    <input type="number" id="age" placeholder="Contoh: 20" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Lanjut ke Tes</button>
+            </form>
+        </div>
+
+        <!-- SECTION 3: Quiz Interface -->
+        <div id="quiz-page" class="glass-card hidden">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="question-container">
+                <h2 id="question-text">Loading question...</h2>
+                <p>Seberapa setuju Anda dengan pernyataan di atas?</p>
+                <div class="options-grid">
+                    <button class="btn btn-option" onclick="answerQuestion(1)">1 - Sangat Tidak Setuju</button>
+                    <button class="btn btn-option" onclick="answerQuestion(2)">2 - Tidak Setuju</button>
+                    <button class="btn btn-option" onclick="answerQuestion(3)">3 - Netral</button>
+                    <button class="btn btn-option" onclick="answerQuestion(4)">4 - Setuju</button>
+                    <button class="btn btn-option" onclick="answerQuestion(5)">5 - Sangat Setuju</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Results Dashboard -->
+        <div id="result-page" class="glass-card hidden">
+            <div class="result-header">
+                <p>Hasil Analisa untuk <span id="result-name" style="font-weight:bold; color:white;">User</span></p>
+                <h2>Peta Bakat Anda</h2>
+            </div>
+
+            <!-- Radar Chart -->
+            <div class="chart-container">
+                <canvas id="talentChart"></canvas>
+            </div>
+
+            <!-- Top 3 Talents Section -->
+            <div class="section-title">3 Bakat Dominan</div>
+            <div id="top3-container" class="top3-grid">
+                <!-- Cards will be injected by JS -->
+            </div>
+
+            <!-- Personal Insight Section -->
+            <div class="recommendations" style="background: rgba(0,0,0,0.3); margin-top: 1.5rem;">
+                <h3>Insight Personal</h3>
+                <div id="personal-insight-container"
+                    style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <!-- Insights injected by JS -->
+                </div>
+            </div>
+
+            <!-- Career Recommendations -->
+            <div class="recommendations">
+                <h3>Rekomendasi Karir & Studi</h3>
+                <div id="career-recommendations">
+                    <!-- Recommendations injected by JS -->
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <button class="btn btn-primary" onclick="location.reload()">Tes Ulang</button>
+                <button class="btn btn-option" onclick="showHistory()" style="width: auto;">Riwayat</button>
+            </div>
+        </div>
+
+        <!-- SECTION 5: History Info -->
+        <div id="history-page" class="glass-card hidden">
+            <h2>Riwayat Tes</h2>
+            <div id="history-list" class="history-container">
+                <!-- History items -->
+            </div>
+            <button class="btn btn-primary" onclick="location.reload()" style="margin-top: 2rem">Kembali ke
+                Depan</button>
+        </div>
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
